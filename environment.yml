@@ -1,0 +1,9 @@
+name: investigating-weight-sparsity
+channels:
+  - default
+  - conda-forge
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - matplotlib
