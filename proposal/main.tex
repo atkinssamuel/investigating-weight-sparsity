@@ -1,0 +1,80 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2019
+
+% ready for submission
+% \usepackage{neurips_2019}
+
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2019}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+     \usepackage[final]{neurips_2019}
+
+% to avoid loading the natbib package, add option nonatbib:
+%     \usepackage[nonatbib]{neurips_2019}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+
+\title{Weight Sparsity Training Performance Enhancement}
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Samuel Atkins\\
+  MASc. University of Toronto ECE\\
+  \texttt{sam.atkins@mail.utoronto.ca}\\
+  \And Eugene (Evgeny) Osovetsky\\
+  University of Toronto\\
+  eugene.osovetsky@mail.utoronto.ca
+}
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+This project will explore several techniques for inducing dynamic weight sparsity (where sparsity changes during training), in an attempt to obtain a net improvement in training time assuming ideal hardware, on a toy BERT-like model.
+\end{abstract}
+
+\section*{Introduction}
+
+We will explore using weight sparsity to speed up training. GPUs are not capable of exploiting weight sparsity for speed (unless sparsity has special structure). However, emerging hardware architectures may have such capabilities (one of us is employed by an AI hardware manufacturer that may fit this description). The vast majority of current AI research is GPU-based, so we believe there may be many unexplored weight sparsity ideas that may be highly beneficial should the right hardware arise.
+
+We differentiate between ``static" sparsity (pruning unimportant weights from a fully-trained model to reduce its size and improve inference time), and ``dynamic" sparsity (where weights are dynamically dropped and possibly "re-grown" during training). The former is a fairly established research area. We will instead focus on dynamic sparsity.
+
+We will explore several sparsity ideas on a toy BERT-like model, including implementing at least one established technique and one novel technique, and attempt to get to a net training time speedup (keeping same accuracy or loss). Since we will be performing our experiments on GPUs, we will not be able to observe the speedup directly. Instead, we will use either an estimate of FLOPs or the actual training time adjusted by average sparsity (i.e. assuming ideal hardware)
+
+\section*{Related Work}
+Obtaining an accurate and sparse relationship between the input and output data yields many benefits. A sparse model offers a concise and sometimes interpretable explanation for the relationship between the input and target data. Further, sparse models require far less computational resources to deploy. Much research has been conducted to obtain accurate sparse representations of fully-trained models \cite{han}, \cite{lecun-90b}, \cite{lin}, \cite{li}. Recently, a new pruning technique for obtaining sparse models emerged. Higher accuracy values were observed when network weights were reset to their original values and then retrained. This observation led to the ``Lottery Ticket Hypothesis" \cite{frankle}. This hypothesis states that any sparse neural network can be obtained by training the same network from a set of initial conditions. Clever training and initialization algorithms have since emerged \cite{elsen}. 
+
+\section*{Method / Algorithm}
+
+We will pick a ``toy" BERT-like model with a pre-trained embedding (one or more encoder blocks with attention followed by feed-forward FC layers). We will aggressively reduce model size until it is trainable in reasonable time, i.e. significant MLM loss reduction in 20 minutes or less.
+
+We will then apply a standard algorithm (e.g. RigL) at various sparsity levels and take note of the time it takes to train to same loss/accuracy, and compute the net time adjusted for sparsity (e.g. 40min. training time at 50\% average sparsity yields net training time of 20min).
+
+We will then apply at least 2-3 ideas to improve net training time - e.g. these can be selected from: varying the layers sparsity applies to, varying the schedule with which sparsity is applied, varying the regularizer function, varying the sparsification algorithm. Overall, we will attempt to reduce net training time to below the training time of the dense model. Instead of net training time, we may use estimated FLOPs if measuring time will turn out to be unreliable. We will make every effort to conduct sufficient literature review to ensure at least one technique we try is novel. 
+
+\section*{Summary}
+\bibliographystyle{plain}
+\bibliography{citations}
+\end{document}

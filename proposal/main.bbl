@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{elsen}
+Utku Evci, Trevor Gale, Jacob Menick, Pablo~Samuel Castro, and Erich Elsen.
+\newblock Rigging the lottery: Making all tickets winners.
+\newblock {\em CoRR}, abs/1911.11134, 2019.
+
+\bibitem{frankle}
+Jonathan Frankle and Michael Carbin.
+\newblock The lottery ticket hypothesis: Training pruned neural networks.
+\newblock {\em CoRR}, abs/1803.03635, 2018.
+
+\bibitem{han}
+Song Han, Huizi Mao, and William Dally.
+\newblock Deep compression: Compressing deep neural networks with pruning,
+  trained quantization and huffman coding.
+\newblock 10 2016.
+
+\bibitem{lecun-90b}
+Yann LeCun, J.~S. Denker, S.~Solla, R.~E. Howard, and L.~D. Jackel.
+\newblock Optimal brain damage.
+\newblock In David Touretzky, editor, {\em Advances in Neural Information
+  Processing Systems (NIPS 1989)}, volume~2, Denver, CO, 1990. Morgan Kaufman.
+
+\bibitem{lin}
+Shaohui Lin, Rongrong Ji, Yuchao Li, Cheng Deng, and Wei Liu.
+\newblock Toward compact convnets via structure-sparsity regularized filter
+  pruning.
+\newblock {\em IEEE Transactions on Neural Networks and Learning Systems},
+  PP:1--15, 04 2019.
+
+\bibitem{li}
+Wei Wen, Chunpeng Wu, Yandan Wang, Yiran Chen, and Hai Li.
+\newblock Learning structured sparsity in deep neural networks.
+\newblock In D.~Lee, M.~Sugiyama, U.~Luxburg, I.~Guyon, and R.~Garnett,
+  editors, {\em Advances in Neural Information Processing Systems}, volume~29.
+  Curran Associates, Inc., 2016.
+
+\end{thebibliography}
