@@ -1,3 +1,4 @@
+names          c1     c2        c3 
 JAMES          1.664  1.664      1
 JOHN           1.642  3.305      2
 ROBERT         1.576  4.881      3
