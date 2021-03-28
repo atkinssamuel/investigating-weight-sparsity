@@ -4,6 +4,7 @@ import os
 import random
 import torch
 import matplotlib.pyplot as plt
+import math
 
 
 def to_ascii(string):
@@ -80,15 +81,26 @@ def random_choice(array):
     """
     return array[random.randint(0, len(array) - 1)]
 
+def random_choice_val(array, is_val):
+    """
+    Returns a random element from the input array
+    :param array: list
+    :return: array[random index]
+    """
+    if is_val:
+        return array[random.randint(max(0, math.floor(len(array)*0.8)), len(array) - 1)]
+    else:
+        return array[random.randint(0, min(len(array) - 1, math.floor(len(array)*0.8)))]
 
-def random_training_example(data_dict):
+
+def random_training_example(data_dict, is_val):
     """
     Returns a random training example from the input data
     :param data_dict: dictionary
     :return: input, category
     """
     random_category = random_choice(list(data_dict.keys()))
-    line = random_choice(data_dict[random_category])
+    line = random_choice_val(data_dict[random_category], is_val)
 
     # category that the randomly sampled input tensor belongs to tensor
     category_tensor = torch.tensor([list(data_dict.keys()).index(random_category)], dtype=torch.long)
