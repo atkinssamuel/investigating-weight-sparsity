@@ -1,4 +1,12 @@
 # Investigating Weight Sparsity
+## Execution Guide
+**CLI**  
+After installing the packages in the 
+```environment.yml``` file, execute the following in the base directory:
+
+```python main.py```
+
+
 ## Conda Environment Setup
 **Create environment from environment.yml**:  
 *From base directory:*  
